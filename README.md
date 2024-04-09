@@ -113,6 +113,34 @@ Options for `salmon quant`:
 - `-1`/`-2`: tell salmon where to find the left and right reads for this sample
 - `-p`: make use of the 8 threads
 
+Other available options:
+
+* `--gcBias` to learn and correct for fragment-level GC biases in the input data
+* `--posBias` will enable modeling of a position-specific fragment start distribution
+
+7. #### Salmon output
+
+You should see a new directory has been created that is named by the string value you provided in the `-o` command. In the output folder, there will be a file called `quant.sf`. This is the quantification file in which each row corresponds to a transcript, listed by Ensembl ID. The columns correspond to metrics for each transcript:
+
+`````
+Name    Length  EffectiveLength TPM     NumReads
+ENST00000632684.1       12      2.000   0.000000        0.000
+ENST00000434970.2       9       1.000   0.000000        0.000
+ENST00000448914.1       13      2.000   0.000000        0.000
+ENST00000415118.1       8       1.000   0.000000        0.000
+ENST00000390583.1       31      2.000   0.000000        0.000
+ENST00000390577.1       37      2.000   0.000000        0.000
+ENST00000451044.1       17      2.000   0.000000        0.000
+....
+`````
+
+- The first two columns are self-explanatory, the **name** of the transcript and the **length of the transcript** in base pairs (bp).
+- The **effective length** represents the various factors that effect the length of transcript (i.e degradation, technical limitations of the sequencing platform)
+- Salmon outputs ‘pseudocounts’ or ‘abundance estimates’ which predict the relative abundance of different isoforms in the form of three possible metrics (FPKM, RPKM, and TPM). **TPM (transcripts per million)** is a commonly used normalization method as described in [[1\]](http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2820677/) and is computed based on the effective length of the transcript. **We do NOT recommend FPKM or RPKM**.
+- Estimated **number of reads**, which is the estimate of the number of reads drawn from this transcript given the transcript’s relative abundance and length)
+
+
+
 #### Reference
 
 https://combine-lab.github.io/salmon/getting_started/
