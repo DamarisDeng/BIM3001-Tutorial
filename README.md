@@ -29,12 +29,12 @@ In this step, we build an index on our transcriptome. The index is a structure t
 salmon index -t athal.fa.gz -i athal_index
 ```
 
-This will create a folder name `athal_index`.
-
 Other available options from `salmon index`:
 
 * `--type`: can put `quasi` (default) or `fmd` 
 * `-k`: specify the k-mer
+
+This step will create a folder name `athal_index`.
 
 Inside this folder, we can see:
 
@@ -90,7 +90,7 @@ Place these code in a file called `dl_tut_reads.sh`, than run the script:
 bash dl_tut_reads.sh
 `````
 
-#### Quantifying the samples
+6. #### Quantifying the samples
 
 ```Bash
 #!/bin/bash
